@@ -17,7 +17,7 @@ public class Team {
     private long totalWins;
 
     @Transient
-    private List<Match> matchs;
+    private List<Match> matches;
 
     public Team() {
     }
@@ -59,12 +59,12 @@ public class Team {
         this.totalWins = totalWins;
     }
 
-    public List<Match> getMatchs() {
-        return matchs;
+    public List<Match> getMatches() {
+        return matches;
     }
 
-    public void setMatchs(List<Match> matchs) {
-        this.matchs = matchs;
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 
     @Override
