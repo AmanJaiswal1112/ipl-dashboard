@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -37,5 +38,11 @@ public class TeamController
         LocalDate startDate = LocalDate.of(year, 1 , 1);
         LocalDate endDate = LocalDate.of(year+1 , 1 , 1);
         return this.matchRepository.getMatchesByTeamBetweenDates(teamName, startDate, endDate);
+    }
+
+    @RequestMapping(value = "/team" ,method = RequestMethod.GET)
+    public Iterable<Team> getAllTeam()
+    {
+       return this.teamRepository.findAll();
     }
 }
