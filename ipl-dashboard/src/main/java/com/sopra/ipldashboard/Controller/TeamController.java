@@ -2,9 +2,13 @@ package com.sopra.ipldashboard.Controller;
 
 import com.sopra.ipldashboard.Repository.MatchRepository;
 import com.sopra.ipldashboard.Repository.TeamRepository;
+import com.sopra.ipldashboard.model.Match;
 import com.sopra.ipldashboard.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 
 @RestController
@@ -24,5 +28,14 @@ public class TeamController
         team.setMatches(matchRepository.findLatestMatchByTeam(teamName, 4));
 
         return team;
+    }
+
+    @RequestMapping(value = "/team/{teamName}/matches", method = RequestMethod.GET)
+    public List<Match> getMatchesForTeam(@PathVariable String teamName,
+                                         @RequestParam int year)
+    {
+        LocalDate startDate = LocalDate.of(year, 1 , 1);
+        LocalDate endDate = LocalDate.of(year+1 , 1 , 1);
+        return this.matchRepository.getMatchesByTeamBetweenDates(teamName, startDate, endDate);
     }
 }
